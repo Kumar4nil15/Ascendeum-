@@ -1,0 +1,29 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.get("https://mathup.com")
+l = []
+
+for i in range(10):
+    time.sleep(2)
+    driver.refresh()
+
+
+start_button = driver.find_element(By.XPATH, "//div[text()='Start']")
+start_button.click()
+
+
+difficulty_button = driver.find_element(By.XPATH, "//div[text()='Difficulty']")
+difficulty_button.click()
+
+medium_level = driver.find_elements(By.XPATH, "//div[contains(text(), 'Medium')]")
+
+if medium_level:
+    l.append('Medium')
+else:
+    print("Medium level is NOT selected.")
+
+driver.quit()
